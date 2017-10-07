@@ -1,0 +1,28 @@
+{
+	"name": "dman",
+	"authors": [
+		"unleashy"
+	],
+	"dependencies": {
+        "derelict-sdl2": "~>3.1.0-alpha.2",
+        "dyaml": "~>0.6.3"
+	},
+	"description": "D's Pacman",
+	"copyright": "Copyright © 2017, unleashy",
+    "license": "MIT",
+
+    "targetPath": "bin",
+
+    "configurations": [
+        { "name": "application" },
+        {
+            "name": "unittest",
+            "preBuildCommands": ["dub run unit-threaded -c gen_ut_main -- -f bin/ut.d"],
+            "mainSourceFile": "bin/ut.d",
+            "excludedSourceFiles": ["source/app.d"],
+            "dependencies": {
+                "unit-threaded": "~>0.7.31"
+            }
+        }
+    ]
+}
