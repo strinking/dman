@@ -2,5 +2,7 @@ module dman;
 
 public
 {
-    import dman.config;
+    import dman.exception,
+           dman.util,
+           dman.config;
 }
