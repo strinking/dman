@@ -4,5 +4,6 @@ public
 {
     import dman.exception,
            dman.util,
-           dman.config;
+           dman.config,
+           dman.input;
 }
