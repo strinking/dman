@@ -14,7 +14,10 @@
     "targetPath": "bin",
 
     "configurations": [
-        { "name": "application" },
+        {
+            "name": "application",
+            "targetType": "executable"
+        },
         {
             "name": "unittest",
             "targetType": "executable",
