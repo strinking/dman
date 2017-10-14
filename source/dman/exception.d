@@ -25,10 +25,13 @@ class SDLException : GameException
     }
 }
 
-T enforceSDL(alias cmp = "a == 0", T)(T a, lazy const(char[]) message)
+T enforceSDL(alias cmp = "a == 0", T)(T a, lazy string message)
 {
-    import std.exception     : enforce;
-    import std.functional    : unaryFun;
+    import std.functional : unaryFun;
 
-    return enforce!SDLException(unaryFun!(cmp)(a), message);
+    if (!unaryFun!(cmp)(a)) {
+        throw new SDLException(message);
+    }
+
+    return a;
 }
