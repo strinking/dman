@@ -1,7 +1,5 @@
 module dman.config;
 
-import std.traits : lvalueOf;
-
 import dyaml;
 
 version (Have_unit_threaded)
@@ -9,11 +7,14 @@ version (Have_unit_threaded)
     import unit_threaded;
 }
 
-enum isConfig(C) =
-    is(typeof(C.init) == C) &&
-    is(typeof(lvalueOf!(C).read!int("a")) == int) &&
-    is(typeof(lvalueOf!(C).fetch!int("a", 123)) == int) &&
-    is(typeof(lvalueOf!(C).write("a", 123)));
+import dman.util;
+
+enum isConfig(C) = mixin(generateIsSpec(
+    "C",
+    "read!int  :: string      -> int
+     fetch!int :: string, int -> int
+     write     :: string, int"
+));
 
 struct DefaultConfig
 {

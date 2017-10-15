@@ -11,6 +11,8 @@ version (Have_unit_threaded)
     import unit_threaded;
 }
 
+import dman.util;
+
 enum KeyState
 {
     KEY_DOWN,
@@ -20,12 +22,13 @@ enum KeyState
 
 alias InputCommand = void delegate();
 
-enum isInput(I) =
-    is(typeof(I.init) == I) &&
-    is(typeof(lvalueOf!(I).beginNewFrame())) &&
-    is(typeof(lvalueOf!(I).bind(SDL_SCANCODE_0, KeyState.KEY_DOWN, {}))) &&
-    is(typeof(lvalueOf!(I).keyAction(SDL_SCANCODE_0, KeyState.KEY_DOWN))) &&
-    is(typeof(lvalueOf!(I).handle()));
+enum isInput(I) = mixin(generateIsSpec(
+    "I",
+    "beginNewFrame
+     bind      :: SDL_Scancode, KeyState, InputCommand
+     keyAction :: SDL_Scancode, KeyState
+     handle"
+));
 
 struct DefaultInput
 {
