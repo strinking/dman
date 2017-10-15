@@ -6,5 +6,6 @@ public
            dman.util,
            dman.config,
            dman.input,
-           dman.graphics;
+           dman.graphics,
+           dman.spritesheet;
 }
