@@ -79,8 +79,6 @@ struct DefaultGraphics
         window_ = null;
     }
 
-    @disable this(this);
-
     SDL_Texture* loadTexture(in string path)
     {
         if (auto tex = path in textureCache_) {

@@ -7,5 +7,6 @@ public
            dman.config,
            dman.input,
            dman.graphics,
-           dman.spritesheet;
+           dman.spritesheet,
+           dman.game;
 }
